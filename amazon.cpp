@@ -9,6 +9,8 @@
 #include "db_parser.h"
 #include "product_parser.h"
 #include "util.h"
+#include "datastore.h"
+#include "mydatastore.h"
 
 using namespace std;
 struct ProdNameSorter {
@@ -29,7 +31,7 @@ int main(int argc, char* argv[])
      * Declare your derived DataStore object here replacing
      *  DataStore type to your derived type
      ****************/
-    DataStore ds;
+    MyDataStore ds;
 
 
 
@@ -100,10 +102,51 @@ int main(int argc, char* argv[])
                 done = true;
             }
 	    /* Add support for other commands here */
+            else if (cmd == "ADD") {
+                string username;
+                if (ss >> username) {
+                    int search_hit_number;
+                    if (ss >> search_hit_number) {
+                        ds.addProductToCart(username, search_hit_number, hits);
+                    }
+                    else {
+                        cout << "Invalid Request" << endl;
+                    }
+                }
+                else {
+                    cout << "Invalid Request" << endl;
+                }
+            }
 
+            else if (cmd == "VIEWCART") {
+                string username;
+                if (ss >> username) {
+                    if (ds.isValid(username)) {
+                        vector<Product*> cart = ds.getCart(username);
+                        displayProducts(cart);
+                    }
+                    else cout << "Invalid Request" << endl;
+                }
+                else cout << "Invalid Request" << endl;
+            }
 
+            else if (cmd == "BUYCART") {
+                string username;
+                if (ss >> username) {
+                    ds.buyCart(username);
+                }
+                else cout << "Invalid Request" << endl;
+            }
 
-
+            else if (cmd == "QUIT") {
+                string filename;
+                if (ss >> filename) {
+                    ofstream outputFile(filename.c_str());
+                    ds.dump(outputFile);
+                    outputFile.close();   
+                }
+                else cout << "Invalid Request" << endl;
+            }
             else {
                 cout << "Unknown command" << endl;
             }

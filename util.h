@@ -14,11 +14,12 @@ template <typename T>
 std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 {
 	std::set<T> s3;
-	for (typename std::set<T>::iterator i = s1.begin(); i != s1.end(); ++i) //does a O(logn) function n times so O(nlogn)
+	for (typename std::set<T>::iterator it = s1.begin(); it != s1.end(); ++it) //does a O(logn) function n times so O(nlogn)
 	{
-		if (s2.find(*i) != s2.end()) //if iterator to value is found in s2, insert it to s3
+		typename std::set<T>::iterator itr = s2.find(*it);
+		if (itr != s2.end()) //if iterator to value is found in s1 and s2, insert it to s3
 		{
-			s3.insert(*i);
+			s3.insert(*it);
 		}
 	}
 	return s3;
@@ -36,12 +37,11 @@ std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
 
 	for (typename std::set<T>::iterator i = s2.begin(); i != s2.end(); ++i)
 	{
-		if (s3.find(*i) == s3.end())
+		if (s3.find(*i) == s3.end()) //if iterator to value is found in either s1 or s2, insert into s3
 		{
 			s3.insert(*i);
 		}
 	} 
-
 	return s3;
 }
 

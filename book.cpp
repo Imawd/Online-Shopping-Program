@@ -15,12 +15,11 @@ Book::~Book()
 }
 
 std::set<std::string> Book::keywords() const {
-	std::set<std::string> keyword = parseStringToWords(name_);
-	std::set<std::string> temp = parseStringToWords(author_);
-	keyword = setUnion(keyword, temp);
-	temp = parseStringToWords(isbn_);
+	std::set<std::string> temp1 = parseStringToWords(name_);
+	std::set<std::string> temp2 = parseStringToWords(author_);
+	std::set<std::string> keyword = setUnion(temp1, temp2); //after parsing relevant attributes to words, combine the sets of words
+	keyword.insert(isbn_); //no need to parse
 
-	keyword = setUnion(keyword, temp);
 	return keyword;
 }
 
@@ -30,5 +29,5 @@ std::string Book::displayString() const {
 
 void Book::dump(std::ostream& os) const{
 	Product::dump(os);
-	os << author_ << "\n" << isbn_ << "\n";
+	os << isbn_ << "\n" << author_ << "\n";
 }

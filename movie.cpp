@@ -15,9 +15,10 @@ Movie::~Movie()
 }
 
 std::set<std::string> Movie::keywords() const {
-	std::set<std::string> keyword = parseStringToWords(name_);
-	std::set<std::string> temp = parseStringToWords(genre_);
-	keyword = setUnion(keyword, temp);
+	std::set<std::string> temp1 = parseStringToWords(name_);
+	std::set<std::string> temp2 = parseStringToWords(genre_);
+	std::set<std::string> keyword = setUnion(temp1, temp2); //after parsing relevant attributes to words, combine the sets of words
+	keyword.insert(rating_); //no need to parse
 
 	return keyword;
 }

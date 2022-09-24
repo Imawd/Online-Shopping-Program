@@ -14,9 +14,9 @@ Clothing::~Clothing(){
 }
 
 std::set<std::string> Clothing::keywords() const {
-	std::set<std::string> keyword = parseStringToWords(name_);
-	std::set<std::string> temp = parseStringToWords(brand_);
-	keyword = setUnion(keyword, temp);
+	std::set<std::string> temp1 = parseStringToWords(name_);
+	std::set<std::string> temp2 = parseStringToWords(brand_);
+	std::set<std::string> keyword = setUnion(temp1, temp2); //after parsing relevant attributes to words, combine the sets of words
 
 	return keyword;
 }
@@ -27,5 +27,5 @@ std::string Clothing::displayString() const {
 
 void Clothing::dump(std::ostream& os) const{
 	Product::dump(os);
-	os << brand_ << "\n" << size_ << "\n";
+	os << size_ << "\n" << brand_ << "\n";
 }

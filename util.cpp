@@ -18,26 +18,20 @@ std::set<std::string> parseStringToWords(string rawWords)
     std::set<std::string> words;
     std::string word = "";
 
-    for (int i = 0; i < (signed)rawWords.size() - 1; i++)
+    for (int i = 0; i < (signed)rawWords.length(); i++)
     { 
-        if ((isalpha(rawWords[i]) || isdigit(rawWords[i])) && (i+1) != (signed)rawWords.size())
+        if ((isalpha(rawWords[i]) || isdigit(rawWords[i])))
         {
             word += rawWords[i];
         }
-
         else if (!isalpha(rawWords[i]) || !isdigit(rawWords[i]))
         {
-            if (word.size() >= 2) words.insert(convToLower(word));
-            word = "";
-        }
-
-        else if ((isalpha(rawWords[i]) || isdigit(rawWords[i])) && (i+1) == (signed)rawWords.size())
-        {
-            word += rawWords[i];
-            if (word.size() >= 2) words.insert(convToLower(word));
+            if (word.length() >= 2) words.insert(convToLower(word));
             word = "";
         }
     }
+
+    if (word.length() >= 2) words.insert(convToLower(word));
 
     return words;
 }
