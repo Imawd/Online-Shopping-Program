@@ -43,20 +43,7 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 
 	else if (type == 0)
 	{
-		//Below is a less elegant solution that i had initially done and left in for reference on what not to do
-		// for (int i = 0; i < (signed)products.size(); i++) 
-		// {
-		// 	std::set<std::string> keyword = products[i]->keywords();
-		// 	for (std::vector<std::string>::iterator it = terms.begin(); it != terms.end(); ++it)
-		// 	{
-		// 		if (keyword.find(*it) == keyword.end()) break;
-		// 		else if ((it + 1) == terms.end() && std::find(end_results.begin(), end_results.end(), products[i]) == end_results.end()) {
-		// 			end_results.push_back(products[i]);
-		// 			break;
-		// 		}
-		// 	}
-		// }
-		if (keywordMap.find(terms[0]) != keywordMap.end()) {
+		if (keywordMap.find(terms[0]) != keywordMap.end()) { //fill results for the first term to check against the next term
 			results = keywordMap.find(terms[0])->second;
 		}
 		for (unsigned int i = 1; i < terms.size(); i++) {
