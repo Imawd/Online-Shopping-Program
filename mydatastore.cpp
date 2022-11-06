@@ -42,8 +42,8 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 				results = setUnion(results, termSet); //returns set if either of the terms match keywords
 		}
 		for (std::set<Product*>::iterator it = results.begin(); it != results.end(); ++it) {
-    	end_results.push_back(*it);
-  	}	 
+    			end_results.push_back(*it);
+  		}	 
 	}
 
 	else if (type == 0)
@@ -56,8 +56,8 @@ std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int t
 				results = setIntersection(results, termSet); //returns the set of products that matches both sets
 		}
 		for (std::set<Product*>::iterator it = results.begin(); it != results.end(); ++it) {
-    	end_results.push_back(*it);
-  	}	 
+			end_results.push_back(*it);
+		}	 
 		 
 	}
 
