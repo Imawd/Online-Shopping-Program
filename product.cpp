@@ -50,7 +50,9 @@ bool Product::isMatch(std::vector<std::string>& searchTerms) const
 
 void Product::dump(std::ostream& os) const
 {
-    os << category_ << "\n" << name_ << "\n" << price_ << "\n" << qty_ << endl;
+    os << category_ << "\n" << name_ << endl;
+		os << setprecision(2) << fixed << price_ << endl;
+		os << qty_ << endl;
 }
 
 

@@ -6,6 +6,10 @@ MyDataStore::MyDataStore() : DataStore() {
 }
 
 MyDataStore::~MyDataStore() {
+	cart.clear();
+	products.clear();
+	users.clear();
+	keywordMap.clear();
 
 }
 
@@ -21,6 +25,7 @@ void MyDataStore::addProduct(Product* p) {
 
 void MyDataStore::addUser(User* u) {
 	users.push_back(u);
+	cart[u];
 }
 
 std::vector<Product*> MyDataStore::search(std::vector<std::string>& terms, int type) {
@@ -83,7 +88,7 @@ void MyDataStore::addProductToCart(std::string username, int hit_no, std::vector
 	}
 
 	else if (hit_no-1 >= (signed)hits.size()) {
-		std::cout << "Invalid Request: Hit does not exist" << std::endl;
+		std::cout << "Invalid Request" << std::endl;
 		return;
 	}
 

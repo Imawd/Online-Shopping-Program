@@ -125,7 +125,7 @@ int main(int argc, char* argv[])
                         vector<Product*> cart = ds.getCart(username);
                         displayProducts(cart);
                     }
-                    else cout << "Invalid Request" << endl;
+                    else cout << "Invalid Username" << endl;
                 }
                 else cout << "Invalid Request" << endl;
             }
@@ -163,7 +163,7 @@ void displayProducts(vector<Product*>& hits)
     	cout << "No results found!" << endl;
     	return;
     }
-    std::sort(hits.begin(), hits.end(), ProdNameSorter());
+    //std::sort(hits.begin(), hits.end(), ProdNameSorter());
     for(vector<Product*>::iterator it = hits.begin(); it != hits.end(); ++it) {
         cout << "Hit " << setw(3) << resultNo << endl;
         cout << (*it)->displayString() << endl;
